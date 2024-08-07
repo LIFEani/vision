@@ -16,6 +16,12 @@ class Student implements Comparable<Student> {
         this.name = name;
         this.text = text;
     }
+    public Student(String name,int age ,String text) {
+        this.name = name;
+        this.text = text;
+        this.age = age;
+    }
+
     public Student( ) {
 
     }
