@@ -1,5 +1,7 @@
 package org.example;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
@@ -11,33 +13,29 @@ public class Main {
 
     public static void main(String[] args)  {
 
-        List<Map<String, String>> list = new ArrayList<Map<String, String>>() {{
-            add(new HashMap<String, String>() {{
-                put("key0", "value00");
-                put("key1", "value01");
-            }});
-            add(new HashMap<String, String>() {{
-                put("key0", "value10");
-                put("key1", "value11");
-                put("key2", "value12");
-            }});
-            add(new HashMap<String, String>() {{
-                put("key0", "value20");
-                put("key1", "value21");
-                put("key2", "value22");
-            }});
-        }};
+        // 创建一个新的 JSONObject 实例
+        JSONObject jsonObject = new JSONObject();
 
-        String key0 = null;
-        String key1 = null;
+        // 向 JSONObject 中添加数据
+        jsonObject.put("name", "张三");
+        jsonObject.put("age", 30);
+        jsonObject.put("isStudent", false);
 
-        Set<String> collect = list.stream()
-                .filter(t-> StringUtils.isNotEmpty(key0) ? key0.equals(t.get("key0")) : true)
-                .filter(t-> StringUtils.isNotEmpty(key1) ? key1.equals(t.get("key1")) : true)
-                .flatMap(i -> Stream.of(i.get("key0"), i.get("key2")))
-                .filter(Objects::nonNull) // 过滤掉 null 值
-                .collect(Collectors.toSet());
-        System.out.println(collect);
+        // 嵌套一个 JSONObject
+        JSONObject address = new JSONObject();
+        address.put("city", "北京");
+        address.put("district", "海淀区");
+
+        // 将嵌套的 JSONObject 添加到主 JSONObject 中
+        jsonObject.put("address", address);
+
+
+
+
+        System.out.println(jsonObject.getString("isStudent"));
+
+        System.out.println("false".equals(jsonObject.getString("isStudent")));
+
     }
 }
 
