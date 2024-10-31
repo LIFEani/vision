@@ -41,15 +41,6 @@ public class Student {
     public void setText(String text) {
         this.text = text;
     }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", text='" + text + '\'' +
-                '}';
-    }
 }
 
 
